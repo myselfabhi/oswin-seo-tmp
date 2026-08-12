@@ -86,6 +86,16 @@ const nextConfig: NextConfig = {
         destination: "/block-board/oswin-block-board",
         permanent: true,
       },
+      {
+        source: "/news",
+        destination: "/blogs",
+        permanent: true,
+      },
+      {
+        source: "/news/:slug",
+        destination: "/blogs/:slug",
+        permanent: true,
+      },
     ];
   },
   experimental: {
