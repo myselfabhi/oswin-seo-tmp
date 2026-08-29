@@ -1,0 +1,46 @@
+.locations-sec {
+  background: #f7f4ee;
+
+  .location-card-wrap { height: 100%; }
+
+  .location-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    height: 100%;
+    background: #ffffff;
+    border: 1px solid #e8e4db;
+    border-radius: 14px;
+    padding: 28px 26px;
+    text-decoration: none;
+    transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease;
+
+    &:hover {
+      border-color: rgba(46, 125, 50, .35);
+      box-shadow: 0 12px 28px rgba(24, 58, 28, .09);
+      transform: translateY(-3px);
+    }
+
+    .loc-pin {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 58px;
+      height: 58px;
+      background: #eef5ee;
+      border-radius: 50%;
+      margin-bottom: 6px;
+    }
+    .loc-city { font-size: 22px; font-weight: 700; color: #183a1c; line-height: 1.2; }
+    .loc-sub { font-size: 14px; color: #5a5a5a; line-height: 1.5; }
+    .loc-link {
+      margin-top: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #2e7d32;
+      .arw { transition: transform .2s ease; display: inline-block; }
+    }
+    &:hover .loc-link .arw { transform: translateX(4px); }
+  }
+}
