@@ -95,7 +95,13 @@ export async function sendLeadToMeta(lead) {
     for (let i = 0; i < delays.length; i++) {
       if (delays[i]) await new Promise((r) => setTimeout(r, delays[i]));
       try {
-        await postToMeta(payload);
+        const json = await postToMeta(payload);
+        console.log("[meta-capi] ok", {
+          form_name: lead.form_name,
+          event_id: lead.event_id,
+          events_received: json?.events_received,
+          fbtrace: json?.fbtrace_id,
+        });
         return;
       } catch (e) {
         lastErr = e;
