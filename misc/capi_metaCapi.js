@@ -80,7 +80,7 @@ export async function sendLeadToMeta(lead) {
           user_data,
           custom_data: {
             content_name: lead.form_name || "",
-            content_category: lead.product_category || "",
+            content_category: (lead.product_category || "").trim(),
           },
         },
       ],

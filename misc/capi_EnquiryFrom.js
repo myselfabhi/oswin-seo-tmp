@@ -75,7 +75,8 @@ const EnquiryFrom = ({ fieldCss = {}, action = () => { }, dvalues = {}, formName
         const tracking = collectTracking();
         const { form_name, form_location } = resolveForm();
         // category <select> stores a Mongo ObjectId as its value; send the visible label
-        const product_category = categories.find(c => String(c._id) === String(data.categorys))?.name || "";
+        // (trimmed - some CMS category names carry a trailing space that would fragment reporting)
+        const product_category = (categories.find(c => String(c._id) === String(data.categorys))?.name || "").trim();
 
         const result = await EnquiryFromAction({ ...data, _capi: { tracking, form_name, form_location, product_category } });
 
