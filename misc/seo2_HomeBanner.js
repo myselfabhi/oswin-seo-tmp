@@ -36,6 +36,13 @@ const HomeBanner = ({ BannerData = [], isHtml = true, isHtmlTitle = true }) => {
     return (
         <section className="homebanner-sec slider">
             <div className="container">
+                {/* TS-114: the banner slider (CommonSlider) renders client-side only, so its
+                    heading is not in the server HTML crawlers see. This single server-rendered
+                    H1 carries the hero heading for SEO; it is visually hidden so it does not
+                    duplicate the visible slider title. Exactly one H1 per page. */}
+                {BannerData?.[0]?.heading
+                    ? <h1 className="visually-hidden-h1" style={{ position: "absolute", width: "1px", height: "1px", padding: 0, margin: "-1px", overflow: "hidden", clip: "rect(0,0,0,0)", whiteSpace: "nowrap", border: 0 }} dangerouslySetInnerHTML={{ __html: BannerData[0].heading }} />
+                    : <h1 className="visually-hidden-h1" style={{ position: "absolute", width: "1px", height: "1px", padding: 0, margin: "-1px", overflow: "hidden", clip: "rect(0,0,0,0)", whiteSpace: "nowrap", border: 0 }}>Oswin Ply Plywood, Panel Doors, Block Board and Prelam Boards Manufacturer</h1>}
                 <CommonSlider btnpos="no-btns" desktopcount={1} arrow={false}>
                     {BannerData?.map((val, index) => {
                         return (
@@ -44,24 +51,12 @@ const HomeBanner = ({ BannerData = [], isHtml = true, isHtmlTitle = true }) => {
                                 <Image className="bannerimage mobile" src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${val?.responsive_image ?? ""}`} alt={val?.alt ?? "Home banner"} width={500} height={500} />
                                 <div className="inner-container banner-text flex flex-col gap-2">
                                     <div className="tag">{val?.tagline ?? "Oswin Ply"}</div>
-                                    {/* TS-114: first banner slide's heading is the page H1 (exactly one per page); other slides stay <div> */}
-                                    {isHtmlTitle ? (index === 0
-                                        ? <h1 className="title-sec" dangerouslySetInnerHTML={{ __html: val?.heading ?? "" }} />
-                                        : <div className="title-sec" dangerouslySetInnerHTML={{ __html: val?.heading ?? "" }} />
-                                    ) : (index === 0
-                                        ? <h1 className="title-sec">
-                                            {val?.highlighttext &&
-                                                <span>{val?.highlighttext}</span>
-                                            }
-                                            {val?.heading ?? ""}
-                                        </h1>
-                                        : <div className="title-sec">
-                                            {val?.highlighttext &&
-                                                <span>{val?.highlighttext}</span>
-                                            }
-                                            {val?.heading ?? ""}
-                                        </div>
-                                    )}
+                                    {isHtmlTitle ? <div className="title-sec" dangerouslySetInnerHTML={{ __html: val?.heading ?? "" }} /> : <div className="title-sec">
+                                        {val?.highlighttext &&
+                                            <span>{val?.highlighttext}</span>
+                                        }
+                                        {val?.heading ?? ""}
+                                    </div>}
                                     {isHtml ? <div className="desc hidden sm:block" dangerouslySetInnerHTML={{ __html: val?.description ?? "" }} /> : <div className="desc">{val?.description ?? ""}</div>
                                     }
                                     <div className="links flex mt-4">
