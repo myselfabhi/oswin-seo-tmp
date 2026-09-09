@@ -41,7 +41,7 @@ const LocationsSec = () => {
   return (
     <CommonSec secname="locations-sec common-spacing-py">
       <div className="inner-container">
-        <CommonHeading subtitle="Our Presence Across India" title="Plywood Manufacturers Near You" />
+        <CommonHeading subtitle="Our Presence Across India" title="Authorised Plywood Dealers Near You" />
         <div className="items mt-4 sm:-ml-4">
           <CommonSlider itemStyle="mb-1 sm:px-4" desktopcount={4} arrow={true} tabcount={3} smalltabcount={2} mobilecount={1}>
             <LocationsList />
