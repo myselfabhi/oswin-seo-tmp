@@ -10,6 +10,7 @@ const CITIES = [
   { name: "Hyderabad", slug: "plywood-dealers-hyderabad" },
   { name: "Bengaluru", slug: "plywood-dealers-bengaluru" },
   { name: "Hubballi", slug: "plywood-dealers-hubballi" },
+  { name: "Pune", slug: "plywood-dealers-pune" },
 ];
 
 const PinIcon = () => (
